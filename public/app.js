@@ -34,14 +34,18 @@ function todo($http) {
   vm.finished = function(item) {
     var payload = JSON.stringify({task: item});
     var todos = $http.delete('http://localhost:1337/todoFinish/' + item.task, payload);
-    getTodos();
+    todos.then(function(todo) {
+      getTodos();
+    });
   }
 
   vm.addTodo = function() {
     if(vm.todoText != '' && vm.todoText != undefined) {
       var payload = JSON.stringify({task: vm.todoText});
       var todos = $http.post('http://localhost:1337/todo', payload);
-      getTodos();
+      todos.then(function() {
+        getTodos();
+      });
     }
     vm.todoText = '';
   };
