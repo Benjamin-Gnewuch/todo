@@ -14,7 +14,6 @@ describe('Todos', function() {
       done();
     });
   });
-
   it('can be added.', function(done) {
     request({
       url: 'http://localhost:' + port + '/todo',
@@ -27,7 +26,6 @@ describe('Todos', function() {
       done();
     });
   });
-
   it('can be finished.', function(done) {
     request({
       url: 'http://localhost:' + port + '/todoFinish/Test',
