@@ -19,6 +19,25 @@ app.get('/user', function(req, res) {
   res.json(user);
 })
 
+app.post('/todo', jsonParser, function(req, res) {
+  var newTask = req.body.task;
+
+  myClient.connect(url, function(err, db) {
+    if(!err) {
+      console.log('Connected to server');
+
+      var tasks = db.collection('tasks');
+      tasks.insert({task: newTask}, function(error, results) {
+        db.close();
+        res.send();
+      });
+    }
+    else {
+      res.sendStatus(500);
+    }
+  })
+})
+
 app.get('/todos/:user', function(req, res) {
   if(req.params.user === 'Ben') {
     myClient.connect(url, function(err, db) {
@@ -40,15 +59,15 @@ app.get('/todos/:user', function(req, res) {
   }
 })
 
-app.post('/todo', jsonParser, function(req, res) {
-  var newTask = req.body.task;
-
+app.delete('/todoFinish/:task', jsonParser, function(req, res) {
+  var finishedTask = req.params.task;
+  
   myClient.connect(url, function(err, db) {
     if(!err) {
       console.log('Connected to server');
 
       var tasks = db.collection('tasks');
-      tasks.insert({task: newTask}, function(error, results) {
+      tasks.remove({task: finishedTask}, function(error, results) {
         db.close();
         res.send();
       });
@@ -57,6 +76,7 @@ app.post('/todo', jsonParser, function(req, res) {
       res.sendStatus(500);
     }
   })
+
 })
 
 app.listen(1337);

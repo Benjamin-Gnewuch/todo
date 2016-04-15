@@ -32,14 +32,21 @@ function todo($http) {
   }
 
   vm.finished = function(item) {
-    var position = vm.list.indexOf(item);
-    vm.list.splice(position, 1);
+    var payload = JSON.stringify({task: item});
+    var todos = $http.delete('http://localhost:1337/todoFinish/' + item.task, payload);
+    todos.then(function(todo) {
+      getTodos();
+    });
   }
 
   vm.addTodo = function() {
-    var payload = JSON.stringify({task: vm.todoText});
-    var todos = $http.post('http://localhost:1337/todo', payload);
-    getTodos();
+    if(vm.todoText != '' && vm.todoText != undefined) {
+      var payload = JSON.stringify({task: vm.todoText});
+      var todos = $http.post('http://localhost:1337/todo', payload);
+      todos.then(function() {
+        getTodos();
+      });
+    }
     vm.todoText = '';
   };
 }
