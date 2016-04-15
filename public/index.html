@@ -5,19 +5,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
   <body ng-app="todo">
-    <div ng-controller="homeController as home">
-      {{home.message}} {{home.user.name}}
-    </div>
-    <div ng-controller="todoController as todo">
-      Items: <span ng-show="todo.list.length">{{todo.list.length}}</span>
-      <ol>
-        <li ng-repeat="item in todo.list">
-          <input ng-click="finished = !finished" type="checkbox"></input>
-          <span ng-class="{'text-muted': finished}">
-            {{item}}
-          </span>
-        </li>
-      </ol>
+    <br>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-1 col-sm-4 col-sm-offset-1">
+        <div ng-controller="homeController as home">
+          <h3>{{home.message}} {{home.user.name}}</h3>
+        </div>
+        <br>
+        <div ng-controller="todoController as todo">
+          <h4 ng-show="todo.list.length !== 0">Items: {{todo.list.length}}</h4>
+          <h4 ng-show="todo.list.length === 0">Nothing to do</h4>
+          <hr>
+          <ol>
+            <li ng-repeat="item in todo.list">
+              <input ng-show="!finished" ng-click="finished = !finished; todo.finished(item)" type="checkbox">
+              <span>{{item.task}}</span>
+            </li>
+          </ol>
+          <hr>
+          <form ng-submit="todo.addTodo()">
+            <input type="text" ng-model="todo.todoText" size="30" placeholder="New Todo">
+            <input class="btn-primary" type="submit" value="add">
+          </form>
+        </div>
+      </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="app.js"></script>
