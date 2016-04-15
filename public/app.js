@@ -32,14 +32,12 @@ function todo($http) {
   }
 
   vm.finished = function(item) {
-    console.log(item);
     var payload = JSON.stringify({task: item});
     var todos = $http.delete('http://localhost:1337/todoFinish/' + item.task, payload);
     getTodos();
   }
 
   vm.addTodo = function() {
-    console.log(vm.todoText);
     if(vm.todoText != '' && vm.todoText != undefined) {
       var payload = JSON.stringify({task: vm.todoText});
       var todos = $http.post('http://localhost:1337/todo', payload);
