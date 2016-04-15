@@ -18,7 +18,10 @@
   "homepage": "https://github.com/Benjamin-Gnewuch/todo#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "chai": "^3.5.0",
     "express": "^4.13.4",
-    "mongodb": "^2.1.16"
+    "mocha": "^2.4.5",
+    "mongodb": "^2.1.16",
+    "request": "^2.71.0"
   }
 }
