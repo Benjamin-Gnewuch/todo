@@ -59,9 +59,9 @@ app.get('/todos/:user', function(req, res) {
   }
 })
 
-app.delete('/todoFinish/:task', jsonParser, function(req, res) {
+app.delete('/todoFinish/:task', function(req, res) {
   var finishedTask = req.params.task;
-  
+
   myClient.connect(url, function(err, db) {
     if(!err) {
       console.log('Connected to server');
@@ -80,3 +80,5 @@ app.delete('/todoFinish/:task', jsonParser, function(req, res) {
 })
 
 app.listen(1337);
+
+module.exports = app;
