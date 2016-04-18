@@ -33,6 +33,7 @@ describe('Todos', function() {
     },
     function(error, response, body) {
       assert.equal(response.statusCode, 200);
+      server.close();
       done();
     });
   });
