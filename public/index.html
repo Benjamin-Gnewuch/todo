@@ -3,34 +3,29 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   </head>
   <body ng-app="todo">
     <br>
     <div class="row">
-      <div class="col-md-6 col-md-offset-1 col-sm-4 col-sm-offset-1">
+      <div class="col-md-3 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 text-center">
         <div ng-controller="homeController as home">
-          <h3>{{home.message}} {{home.user.name}}</h3>
+          <greeting></greeting>
         </div>
         <br>
         <div ng-controller="todoController as todo">
-          <h4 ng-show="todo.list.length !== 0">Items: {{todo.list.length}}</h4>
-          <h4 ng-show="todo.list.length === 0">Nothing to do</h4>
+          <todoheader></todoheader>
+          <list></list>
           <hr>
-          <ol>
-            <li ng-repeat="item in todo.list">
-              <input ng-show="!finished" ng-click="finished = !finished; todo.finished(item)" type="checkbox">
-              <span>{{item.task}}</span>
-            </li>
-          </ol>
-          <hr>
-          <form ng-submit="todo.addTodo()">
-            <input type="text" ng-model="todo.todoText" size="30" placeholder="New Todo">
-            <input class="btn-primary" type="submit" value="add">
-          </form>
+          <add></add>
         </div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="app.js"></script>
+    <script src="/home/greeting.directive.js"></script>
+    <script src="/todo/header.directive.js"></script>
+    <script src="/todo/list.directive.js"></script>
+    <script src="/todo/add.directive.js"></script>
   </body>
 </html>
