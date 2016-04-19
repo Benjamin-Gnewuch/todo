@@ -1,6 +1,9 @@
-<ol>
-  <li ng-repeat="item in todo.list">
-    <input ng-show="!finished" ng-click="finished = !finished; todo.finished(item)" type="checkbox">
-    <span>{{item.task}}</span>
-  </li>
-</ol>
+<div class="col-md-9">
+  <ol>
+    <li ng-repeat="item in todo.list">
+      <input ng-show="!finished" ng-click="finished = !finished; todo.finished(item)" type="checkbox">
+      <span>{{item.task}}</span>
+      <span class="pull-right">{{item.date | date:'MMMM, dd yyyy'}}</span>
+    </li>
+  </ol>
+</div>

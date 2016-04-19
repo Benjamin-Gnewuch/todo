@@ -21,13 +21,13 @@ app.get('/user', function(req, res) {
 
 app.post('/todo', jsonParser, function(req, res) {
   var newTask = req.body.task;
-
+  var dueDate = req.body.date;
   myClient.connect(url, function(err, db) {
     if(!err) {
       console.log('Connected to server');
 
       var tasks = db.collection('tasks');
-      tasks.insert({task: newTask}, function(error, results) {
+      tasks.insert({task: newTask, date: dueDate}, function(error, results) {
         db.close();
         res.send();
       });
@@ -76,7 +76,6 @@ app.delete('/todoFinish/:task', function(req, res) {
       res.sendStatus(500);
     }
   })
-
 })
 
 if(!require.main.loaded) {

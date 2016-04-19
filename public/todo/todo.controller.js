@@ -27,7 +27,7 @@ function todo($http) {
 
   vm.addTodo = function() {
     if(vm.todoText != '' && vm.todoText != undefined) {
-      var payload = JSON.stringify({task: vm.todoText});
+      var payload = JSON.stringify({task: vm.todoText, date: vm.todoDate});
       var todos = $http.post('http://localhost:1337/todo', payload);
       todos.then(function() {
         getTodos();
