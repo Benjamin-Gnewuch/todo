@@ -41,7 +41,7 @@ function todo($http, userService) {
   function getUser() {
     var user = userService.getUser('Ben');
     user.then(function(user) {
-      console.log(user.data[0].user);
+      vm.user = (user.data[0].user) + "'s Todo List";
     });
   }
 }
