@@ -1,12 +1,14 @@
 var app = angular.module('todo');
 
 app.controller('todoController', todo);
+app.$inject = ['$http', 'userService'];
 
-function todo($http) {
+function todo($http, userService) {
   vm = this;
   activate();
 
   function activate() {
+    getUser();
     getTodos();
   }
 
@@ -35,4 +37,11 @@ function todo($http) {
     }
     vm.todoText = '';
   };
+
+  function getUser() {
+    var user = userService.getUser('Ben');
+    user.then(function(user) {
+      console.log(user.data[0].user);
+    });
+  }
 }

@@ -11,13 +11,34 @@ var myClient = mongo.MongoClient;
 
 app.use(express.static('./public'));
 
-app.get('/user', function(req, res) {
-  var user = {
-    name: 'Ben',
-    location: 'Irvine'
-  }
-  res.json(user);
-})
+app.get('/user/:username', function(req, res) {
+
+  myClient.connect(url, function(err, db) {
+    if(!err) {
+      console.log('Connected to server');
+
+      var users = db.collection('todo.users');
+      var user = req.params.username;
+
+      users.find({user: user}).toArray(function(err, docs) {
+        if(!err) {
+          db.close();
+          console.log(docs);
+          res.send(docs);
+        }
+      });
+    }
+    else {
+      res.sendStatus(500);
+    }
+  });
+
+  // var user = {
+  //   name: 'Ben',
+  //   location: 'Irvine'
+  // }
+  // res.json(user);
+});
 
 app.post('/todo', jsonParser, function(req, res) {
   var newTask = req.body.task;
@@ -26,7 +47,7 @@ app.post('/todo', jsonParser, function(req, res) {
     if(!err) {
       console.log('Connected to server');
 
-      var tasks = db.collection('tasks');
+      var tasks = db.collection('todo.tasks');
       tasks.insert({task: newTask, date: dueDate}, function(error, results) {
         db.close();
         res.send();
@@ -43,7 +64,7 @@ app.get('/todos/:user', function(req, res) {
     myClient.connect(url, function(err, db) {
       if(!err) {
         console.log('Connected to server');
-        var tasks = db.collection('tasks');
+        var tasks = db.collection('todo.tasks');
 
         tasks.find({}).toArray(function(err, docs) {
           if(!err) {
@@ -66,7 +87,7 @@ app.delete('/todoFinish/:task', function(req, res) {
     if(!err) {
       console.log('Connected to server');
 
-      var tasks = db.collection('tasks');
+      var tasks = db.collection('todo.tasks');
       tasks.remove({task: finishedTask}, function(error, results) {
         db.close();
         res.send();
