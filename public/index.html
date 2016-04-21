@@ -8,16 +8,26 @@
   <body ng-app="todo">
     <br>
     <div class="container">
-      <div class="jumbotron">
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-            <br>
-            <a href="/#/home" id="home-button" class="btn btn-primary btn-lg">Home</a>
-            <a href="/#/todo" id="todo-button" class="btn btn-primary btn-lg">Todo List</a>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/#/home">Home</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li ><a class="navbar-brand" href="/#/todo">Todo List <span class="sr-only">(current)</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="navbar-brand" href="#">Login</a></li>
+            </ul>
           </div>
         </div>
+      </nav>
+      <div class="jumbotron">
         <div class="row">
-          <div ng-view></div>
+          <div class="col-md-6 col-md-offset-3">
+            <div ng-view></div>
+          </div>
         </div>
       </div>
     </div>
