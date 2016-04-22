@@ -10,7 +10,7 @@ casper.test.begin('Todo test', 5, function suite(test) {
     });
 
     casper.then(function() {
-      casper.wait(500, function() {
+      casper.wait(3000, function() {
         test.assertSelectorHasText('ul > li:last-child > span.ng-binding', 'Test');
         if(this.fetchText('ul > li:last-child > span.ng-binding') == 'Test') {
           this.click('ul li:last-child input');
@@ -36,10 +36,11 @@ casper.test.begin('Todo test', 5, function suite(test) {
     casper.then(function() {
       this.click('#home-button');
       casper.waitForSelector('h2', function() {
-        casper.wait(2000, function() {});
-        if(this.exists('h2.col-md-12')) {
-          test.assertSelectorHasText('h2.col-md-12', 'Welcome Home Ben!');
-        }
+        casper.wait(2000, function() {
+          if(this.exists('h2.col-md-12')) {
+            test.assertSelectorHasText('h2.col-md-12', 'Welcome Home Ben!');
+          }
+        });
       });
     });
   });

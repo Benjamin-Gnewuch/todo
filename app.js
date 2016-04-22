@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 
 var url = 'mongodb://localhost/test';
-
+var url2 = 'mongodb://Ben:password@ds013891.mlab.com:13891/gnewuch-tasks';
 var mongo = require('mongodb');
 var myClient = mongo.MongoClient;
 
@@ -13,7 +13,7 @@ app.use(express.static('./public'));
 
 app.get('/user/:username', function(req, res) {
 
-  myClient.connect(url, function(err, db) {
+  myClient.connect(url2, function(err, db) {
     if(!err) {
       console.log('Connected to server');
 
