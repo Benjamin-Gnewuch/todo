@@ -1,4 +1,4 @@
-casper.test.begin('Todo test', 4, function suite(test) {
+casper.test.begin('Todo test', 5, function suite(test) {
   casper.start('http://localhost:1337' , function() {
 
     casper.then(function() {
@@ -21,6 +21,7 @@ casper.test.begin('Todo test', 4, function suite(test) {
     casper.then(function() {
       casper.wait(500, function() {
         test.assertSelectorDoesntHaveText('ul > li:last-child > span.ng-binding', 'Test');
+        test.assertSelectorHasText('ul > li:last-child > span.ng-binding', 'Merge');
       })
     });
 
