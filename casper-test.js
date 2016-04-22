@@ -4,9 +4,11 @@ casper.test.begin('Todo test', 3, function suite(test) {
     casper.then(function() {
       this.click('#home-button');
       casper.waitForSelector('h2', function() {
-        if(this.exists('h2.col-md-12')) {
-          test.assertSelectorHasText('h2.col-md-12', '\n  \n  Welcome Home !\n');
-        }
+        casper.wait(2000, function() {
+          if(this.exists('h2.col-md-12')) {
+            test.assertSelectorHasText('h2.col-md-12', 'Welcome Home Ben!');
+          }
+        });
       });
     });
 
