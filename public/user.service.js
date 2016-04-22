@@ -6,6 +6,7 @@ userService.$inject = ['$http'];
 
 function userService($http) {
   function getUser(name) {
+    console.log('getUser Called');
     return $http.get('http://localhost:1337/user/' + name);
   }
   function authorize(name, pw) {

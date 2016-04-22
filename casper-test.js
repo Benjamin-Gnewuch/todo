@@ -25,8 +25,10 @@ casper.test.begin('Todo test', 4, function suite(test) {
     });
 
     casper.then(function() {
-      casper.wait(500, function() {
-        test.assertSelectorHasText('#todo-header', "Ben's Todo List");
+      casper.waitForSelector('#todo-header', function() {
+        casper.wait(1500, function() {
+          test.assertSelectorHasText('#todo-header', "Ben's Todo List");
+        });
       });
     });
 

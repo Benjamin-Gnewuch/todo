@@ -7,9 +7,8 @@ var app = require('./app.js');
 var port = 1337;
 var server = app.listen(port);
 
-gulp.task('default', function() {
-  nodemon({ script: 'app.js' })
-  .on('start', ['test']);
+gulp.task('default', ['test'], function() {
+  return;
 });
 
 gulp.task('test', function() {
