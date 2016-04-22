@@ -1,4 +1,4 @@
-casper.test.begin('Todo test', 3, function suite(test) {
+casper.test.begin('Todo test', 4, function suite(test) {
   casper.start('http://localhost:1337' , function() {
 
     casper.then(function() {
@@ -22,6 +22,12 @@ casper.test.begin('Todo test', 3, function suite(test) {
       casper.wait(500, function() {
         test.assertSelectorDoesntHaveText('ul > li:last-child > span.ng-binding', 'Test');
       })
+    });
+
+    casper.then(function() {
+      casper.wait(500, function() {
+        test.assertSelectorHasText('#todo-header', "Ben's Todo List");
+      });
     });
 
     casper.then(function() {

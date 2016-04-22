@@ -15,7 +15,6 @@ function home(userService) {
     console.log(vm);
     vm.user = info.data[0].user;
     console.log(vm);
-    console.log(vm.message + ' ' + vm.user + '!');
   })
   console.log(vm);
 }

@@ -13,6 +13,7 @@ function todo($http, userService) {
   }
 
   function getTodos() {
+    console.log("getTodos Called");
     var todos = $http.get('http://localhost:1337/todos/Ben');
     todos.then(function(todo) {
       vm.list = todo.data;
