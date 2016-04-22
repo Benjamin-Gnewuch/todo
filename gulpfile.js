@@ -4,6 +4,9 @@ var mocha = require('gulp-mocha');
 var casperJs = require('gulp-casperjs');
 var app = require('./app.js');
 
+var port = 1337;
+var server = app.listen(port);
+
 gulp.task('default', function() {
   nodemon({ script: 'app.js' })
   .on('start', ['test']);
@@ -15,11 +18,11 @@ gulp.task('test', function() {
 });
 
 gulp.task('dev', ['casper', 'mocha'], function() {
+  server.close();
 });
 
 gulp.task('casper', function() {
-  var port = 1337;
-  var server = app.listen(port);
+
   return gulp.src('casper-test.js').pipe(casperJs());
 });
 
