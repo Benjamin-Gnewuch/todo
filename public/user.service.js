@@ -9,6 +9,9 @@ function userService($http) {
     console.log(name);
     return $http.get('http://localhost:1337/user/' + name);
   }
+  function authorize(name, pw) {
+    return $http.post('http://localhost:1337/login/')
+  }
   return {
     getUser : getUser
   }

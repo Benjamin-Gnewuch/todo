@@ -32,12 +32,6 @@ app.get('/user/:username', function(req, res) {
       res.sendStatus(500);
     }
   });
-
-  // var user = {
-  //   name: 'Ben',
-  //   location: 'Irvine'
-  // }
-  // res.json(user);
 });
 
 app.post('/todo', jsonParser, function(req, res) {

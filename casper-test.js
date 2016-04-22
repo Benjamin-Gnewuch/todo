@@ -1,14 +1,12 @@
 casper.test.begin('Todo test', 3, function suite(test) {
-  casper.start('http://localhost:1337', function() {
+  casper.start('http://localhost:8080' , function() {
 
     casper.then(function() {
-      casper.wait(500, function() {
-        this.click('#home-button');
-        casper.waitForSelector('h2', function() {
-          if(this.exists('h2.col-md-12')) {
-            test.assertSelectorHasText('h2.col-md-12', 'Welcome Home Ben!');
-          }
-        });
+      this.click('#home-button');
+      casper.waitForSelector('h2', function() {
+        if(this.exists('h2.col-md-12')) {
+          test.assertSelectorHasText('h2.col-md-12', 'Welcome Home Ben!');
+        }
       });
     });
 
