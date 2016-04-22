@@ -13,6 +13,7 @@ function todo($http, userService) {
   }
 
   function getTodos() {
+    console.log("getTodos Called");
     var todos = $http.get('http://localhost:1337/todos/Ben');
     todos.then(function(todo) {
       vm.list = todo.data;
@@ -39,7 +40,8 @@ function todo($http, userService) {
   };
 
   function getUser() {
-    var user = userService.getUser('Ben');
+    //var user = userService.getUser('Ben');
+    var user = $http.get('http://localhost:1337/user/Ben');
     user.then(function(user) {
       vm.user = (user.data[0].user) + "'s Todo List";
     });
