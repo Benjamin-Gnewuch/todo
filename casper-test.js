@@ -1,5 +1,5 @@
 casper.test.begin('Todo test', 3, function suite(test) {
-  casper.start('http://localhost:8080' , function() {
+  casper.start('http://localhost:1337' , function() {
 
     casper.then(function() {
       this.click('#home-button');
